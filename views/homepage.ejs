@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo"><img src="https://brandmark.io/logo-rank/random/beats.png" alt="any image" width="50" height="40"></a>
+        <div class="header-right">
+          <a class="active" href="/">Home</a>
+          <a href="/add">Add List</a>
+          <a href="/login">Other Options</a>
+          <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <% if (users.length>0) { %>
+      <% for (let user of users) { %>
+        <div class="container">
+        <div class="card">
+          <img src="<%= user.imgUrl %>" alt="Avatar" style="width:100%">
+          <h4><b><%= user.name %></b></h4> 
+          <p><%= user.profession %></p>
+          
+
+          <form action="/delete" method="POST" class="delform">
+            <input type="hidden" value="<%= user._id %>" name="userId">
+            <button class="btn btn-danger" id="button" type="submit">Delete</button>
+          </form>
+          
+          
+          </div>
+        </div>
+      <% } %>
+
+    <% } else { %>
+      <h1>No products found!</h1>
+    <% } %>
+</body>
+</html>

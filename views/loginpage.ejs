@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo"><img src="https://brandmark.io/logo-rank/random/beats.png" alt="any image" width="50" height="40"></a>
+        <div class="header-right">
+          <a class="active" href="/">Home</a>
+          <a href="/add">Add List</a>
+          <a href="/login">Other Options</a>
+          <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <form action="/login" method="POST" class="addform">
+        User Name:<br>
+        <input type="text" name="userName"><br>
+        Password:<br>
+        <input type="text" name="password"><br>
+        <input type="submit" value="Submit">
+    </form>   
+</body>
+</html>
