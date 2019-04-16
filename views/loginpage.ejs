@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    <link rel="stylesheet" href="/css/homepage.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/loginpage.css">
 </head>
 <body>
-    <div class="header">
-        <a href="/" class="logo"><img src="https://brandmark.io/logo-rank/random/beats.png" alt="any image" width="50" height="40"></a>
-        <div class="header-right">
-          <a class="active" href="/">Home</a>
-          <a href="/add">Add List</a>
-          <a href="/login">Other Options</a>
-          <a href="/logout">Logout</a>
-        </div>
-    </div>
-    <form action="/login" method="POST" class="addform">
-        User Name:<br>
-        <input type="text" name="userName"><br>
-        Password:<br>
-        <input type="text" name="password"><br>
-        <input type="submit" value="Submit">
-    </form>   
+    <input type='checkbox' id='form-switch'>
+<form id='login-form' action="/login" method='post'>
+  <input type="text" name="email" placeholder="email" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <button type='submit'>Login</button>
+  <label for='form-switch'><span>Register</span></label>
+</form>
+<form id='register-form' action="/signup" method='post'>
+  <input type="text" name="username" placeholder="Username" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <button type='submit'>Register</button>
+  <label for='form-switch'>Already Member ? Sign In Now..</label>
+</form>
 </body>
 </html>

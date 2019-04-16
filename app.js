@@ -19,7 +19,7 @@ app.use(session({
 app.use(homepage);
 
 
-mongoose.connect('mongodb://localhost:27017/lists',{useNewUrlParser:true})
+mongoose.connect('mongodb://localhost:27017/jobs',{useNewUrlParser:true})
 .then(result =>{
     console.log('connected to db');
     app.listen(3000);

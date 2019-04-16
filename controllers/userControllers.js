@@ -1,23 +1,23 @@
 const path = require('path');
 const mainDir = require('../util/path');
-const newUser = require('../models/adduser');
+const newProfile = require('../models/profile');
 
-exports.getLogin = (req,res,next) => {
- res.render('loginpage');
-}
+// exports.getLogin = (req,res,next) => {
+//  res.render('loginpage');
+// }
 
-exports.postLogin = (req,res,next) => {
-    req.session.userName = req.body.userName;
-    req.session.password = req.body.password;
-    res.redirect('/');
-}
+// exports.postLogin = (req,res,next) => {
+//     req.session.userName = req.body.userName;
+//     req.session.password = req.body.password;
+//     res.redirect('/');
+// }
 
 exports.getAddList = (req,res,next) => {
-    if(req.session.userName){
+    if(req.session.email){
         res.render('addItems');
     }
     else{
-        res.redirect('/login');
+        res.redirect('/');
     }    
 }
 
@@ -25,15 +25,17 @@ exports.postAddList = (req,res,next) => {
     const name = req.body.name;
     const profession = req.body.profession;
     const imgUrl = req.body.imgUrl;
-    const user = new newUser({
+    const email = req.session.email;
+    const profile = new newProfile({
         name:name, 
         profession:profession,
-        imgUrl:imgUrl});
-    user
+        imgUrl:imgUrl,
+        email: email});
+    profile
     .save()
     .then(result => {
-        console.log('user saved');
-        res.redirect('/');
+        console.log('profile added');
+        res.redirect('/homepage');
     })
     .catch(err=>{
         console.log(err);
@@ -42,14 +44,14 @@ exports.postAddList = (req,res,next) => {
 
 exports.showList = (req,res,next) => {
     
-    if(req.session.userName){
-        newUser.find().
-        then(users => {
+    if(req.session.email){
+        newProfile.find({email:req.session.email}).
+        then(profiles => {
             res.render('homepage',{
-                users: users
+                profiles: profiles
             });
         })
-        .catch(err => console.log(err));        
+        .catch(err => console.log('hello'));        
     }
     else{
         res.redirect('/login');
@@ -58,26 +60,26 @@ exports.showList = (req,res,next) => {
 };
 
 exports.postDeleteList = (req,res,next) => {
-    const userId = req.body.userId;
-    newUser.findByIdAndRemove(userId)
+    const profileId = req.body.profileId;
+    newProfile.findByIdAndRemove(profileId)
     .then(()=>{
-        console.log('Destroyed User');
-        res.redirect('/');
+        console.log('Destroyed profile');
+        res.redirect('/homepage');
     })
     .catch(err => {
         console.log(err);
     });
 }
 
-exports.getLogout = (req,res,next) =>{
-    req.session.destroy(err => {
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.redirect('/login');
-        }
-    });
-}
+// exports.getLogout = (req,res,next) =>{
+//     req.session.destroy(err => {
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             res.redirect('/login');
+//         }
+//     });
+// }
 
 

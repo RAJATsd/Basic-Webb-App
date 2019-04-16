@@ -14,7 +14,11 @@ const peopleSchema = new Schema({
     imgUrl: {
         type: String,
         required: true
+    },
+    email: {
+        type: String,
+        required:true
     }
 });
 
-module.exports = mongoose.model('User',peopleSchema);
+module.exports = mongoose.model('profile',peopleSchema);
